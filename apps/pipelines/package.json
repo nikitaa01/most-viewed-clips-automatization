@@ -1,0 +1,26 @@
+{
+  "name": "pipelines",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/database": "*",
+    "zod": "catalog:",
+    "drizzle-orm": "catalog:",
+    "@openrouter/ai-sdk-provider": "^2.2.3",
+    "sharp": "^0.34.5",
+    "ai": "^6.0.103"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/node": "^22.15.3",
+    "eslint": "catalog:",
+    "@types/bun": "latest",
+    "typescript": "catalog:"
+  }
+}

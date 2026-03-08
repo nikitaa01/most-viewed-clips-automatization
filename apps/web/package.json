@@ -1,0 +1,30 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --bun next dev --port 3000",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start",
+    "lint": "eslint --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "16.1.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@repo/database": "*",
+    "zod": "catalog:",
+    "drizzle-orm": "catalog:"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "eslint": "catalog:",
+    "typescript": "catalog:"
+  }
+}
