@@ -3,10 +3,12 @@ import { TEMP_DIR } from "./constants/paths";
 import { downloadClips } from "./steps/download-clips";
 import { downloadMostViewedClipThumbnail } from "./steps/download-most-viewed-clip-thumbnail";
 import { downloadStaticFiles } from "./steps/download-static-files";
+import { extractClipsAudio } from "./steps/extract-clips-audio";
 import { fetchClips } from "./steps/fetch-clips";
 import { generateThumbnail } from "./steps/generate-thumbnail";
 import { getGameId } from "./steps/get-game-id";
 import { mergeClips } from "./steps/merge-clips";
+import { normalizeClips } from "./steps/normalize-clips";
 
 await $`mkdir -p ${TEMP_DIR}`;
 
@@ -19,4 +21,6 @@ await downloadMostViewedClipThumbnail(clips[0]);
 await downloadStaticFiles();
 await generateThumbnail();
 const paths = await downloadClips(clips);
-await mergeClips(paths);
+await extractClipsAudio(paths);
+const normalizedPaths = await normalizeClips(paths);
+await mergeClips(normalizedPaths);

@@ -4,6 +4,8 @@ export const ROOT = process.cwd();
 export const TEMP_DIR = join(ROOT, "temp");
 export const CLIPS_PATH = join(TEMP_DIR, "clips.json");
 export const CLIPS_DIR_PATH = join(TEMP_DIR, "clips");
+export const NORMALIZED_CLIPS_DIR_PATH = join(TEMP_DIR, "normalized");
+export const CLIPS_AUDIO_DIR_PATH = join(TEMP_DIR, "clips-audio");
 export const MOST_VIEWED_CLIP_THUMBNAIL_PATH = join(
   TEMP_DIR,
   "most-viewed-clip-thumbnail.jpg",

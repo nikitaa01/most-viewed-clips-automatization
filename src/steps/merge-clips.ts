@@ -8,23 +8,15 @@ export async function mergeClips(successfulPaths: string[]): Promise<void> {
     return;
   }
 
-  console.log("[merge-clips] Merging clips...");
+  console.log("[merge-clips] Merging clips (concat, no re-encode)...");
 
-  const inputs = successfulPaths.flatMap((p) => ["-i", p]);
+  const concatListPath = join(TEMP_DIR, "concat-list.txt");
+  const listContent = successfulPaths
+    .map((p) => `file '${p.replace(/'/g, "'\\''")}'`)
+    .join("\n");
 
-  const filterInputs = successfulPaths
-    .map(
-      (_, i) =>
-        `[${i}:v]scale=2560:1440:force_original_aspect_ratio=decrease:flags=lanczos,pad=2560:1440:(ow-iw)/2:(oh-ih)/2,setsar=1,format=yuv420p[v${i}]; [${i}:a]aresample=48000,aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo[a${i}];`,
-    )
-    .join(" ");
+  await Bun.write(concatListPath, listContent);
 
-  const concatSegments = successfulPaths
-    .map((_, i) => `[v${i}][a${i}]`)
-    .join("");
-
-  const fullFilter = `${filterInputs}${concatSegments}concat=n=${successfulPaths.length}:v=1:a=1[v][a]`;
-
-  await $`ffmpeg ${inputs} -filter_complex ${fullFilter} -map "[v]" -map "[a]" -c:v libx264 -crf 17 -preset slow -vsync 2 -movflags +faststart ${join(TEMP_DIR, "result.mp4")}`;
+  await $`ffmpeg -f concat -safe 0 -i ${concatListPath} -c copy -movflags +faststart -y ${join(TEMP_DIR, "result.mp4")}`;
   console.log("[merge-clips] Merge done.");
 }

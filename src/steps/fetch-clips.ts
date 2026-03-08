@@ -1,8 +1,8 @@
 import { $ } from "bun";
 import { CLIPS_PATH } from "../constants/paths";
-import { clipsSchema } from "../types/clip";
-import type { Clip } from "../types/clip";
 import { getTwitchOAuthHeaders } from "../lib/twitch/auth";
+import type { Clip } from "../types/clip";
+import { clipsSchema } from "../types/clip";
 import { env } from "../utils/env";
 
 export async function fetchClips(gameId: string): Promise<Clip[]> {

@@ -20,6 +20,8 @@ const envVariables = z.object({
   BUCKET_INTRO_PATH: z.string().endsWith(".mp4"),
   BUCKET_OUTRO_PATH: z.string().endsWith(".mp4"),
   BUCKET_THUMBNAIL_PATH: z.string().endsWith(".webp"),
+
+  OPEN_ROUTER_API_KEY: z.string(),
 });
 
 export const env = envVariables.parse(process.env);

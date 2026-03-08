@@ -44,12 +44,8 @@
           "name": "compilations_game_id_games_name_fk",
           "tableFrom": "compilations",
           "tableTo": "games",
-          "columnsFrom": [
-            "game_id"
-          ],
-          "columnsTo": [
-            "name"
-          ],
+          "columnsFrom": ["game_id"],
+          "columnsTo": ["name"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -79,9 +75,7 @@
       "indexes": {
         "games_twitch_game_id_unique": {
           "name": "games_twitch_game_id_unique",
-          "columns": [
-            "twitch_game_id"
-          ],
+          "columns": ["twitch_game_id"],
           "isUnique": true
         }
       },
